@@ -5,6 +5,11 @@ import Cockpit from '../components/Cockpit/Cockpit'
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor')
+  }
+
   state = {
     persons: [
       { id: 'dewfws', name: 'Tristen', age: 23 },
@@ -13,6 +18,24 @@ class App extends Component {
     ],
     otherState: 'some other value'
   };
+
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log('[App.js] getDerivedStateFromProps', props)
+  //   return state;
+  // }
+
+  componentDidMount(){
+    console.log('[App.js] componentDidMount')
+  }
+
+  shouldComponentUpdate() {
+    console.log('[App.js] shouldCOmponentUpdate')
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate')
+  }
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -44,6 +67,7 @@ class App extends Component {
   };
 
   render() {
+    console.log('[App.js] render')
     const style = {
       backgroundColor: 'green',
       color: "white",
