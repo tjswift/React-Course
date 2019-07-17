@@ -10,30 +10,39 @@ class Persons extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[Persons.js] shouldComponentUpdate')
-    return true;
+    if (nextProps.persons !== this.props.persons) {
+      return true
+    } else {
+      return false
+    }
+
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('[Persons.js] getSnapshotBeforeUpdate')
     return null;
   }
-    
+
   componentDidUpdate() {
     console.log('[Persons.js] componentDidUpdate')
   }
 
-  render(){
+  componentWillUnmount() {
+    console.log('[Persons.js] componentWillUnmount')
+  }
+
+  render() {
     console.log('[Persons.js] rendering...')
     return this.props.persons.map((person, index) => {
-        return <Person
-          key={person.id}
-          changed={(event) => this.props.changed(event, person.id)}
-          click={() => this.props.clicked(index)} 
-          name={person.name} 
-          age={person.age}/>
-      }
+      return <Person
+        key={person.id}
+        changed={(event) => this.props.changed(event, person.id)}
+        click={() => this.props.clicked(index)}
+        name={person.name}
+        age={person.age} />
+    }
     );
   }
-} 
+}
 
 export default Persons;
