@@ -14,7 +14,7 @@ class App extends Component {
 
   state = {
     persons: [
-      { id: 'dewfws', name: 'Tristen', age: 23 },
+      { id: 'dewfws', name: 'Tristen', age: 28 },
       { id: 'ouimj', name: 'Aleesha', age: 23 },
       { id: 'ouhds', name: 'Kelly', age: 50 }
     ],
@@ -56,9 +56,12 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({
-      persons: persons,
-      changedCounter: this.state.changedCounter + 1
+    this.setState((prevState, props) => {
+
+      return {
+        persons: persons,
+        changedCounter: prevState.changedCounter + 1
+      }
     });
   }
 
