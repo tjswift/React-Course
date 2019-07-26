@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 import Layout from './components/Layout/Layout'
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder'
+import Backdrop from './components/UI/Backdrop/Backdrop'
 
 class App extends Component {
   render() {
-    return(
+    return (
       <div>
         <Layout>
           <BurgerBuilder />
@@ -13,6 +14,6 @@ class App extends Component {
       </div>
     )
   }
-    
+
 }
 export default App
