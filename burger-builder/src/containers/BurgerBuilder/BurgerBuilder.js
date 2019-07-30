@@ -8,7 +8,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
 
 //Manages the prices of the difference ingredients
 const INGREDIENT_PRICES = {
-    salad: .5,
+    lettuce: .5,
     cheese: .75,
     meat: 1.5,
     bacon: 1.00
@@ -19,7 +19,7 @@ class BurgerBuilder extends Component {
     //initial state for the application
     state = {
         ingredients: {
-            salad: 0,
+            lettuce: 0,
             bacon: 0,
             cheese: 0,
             meat: 0
@@ -83,6 +83,14 @@ class BurgerBuilder extends Component {
         this.setState({ purchasing: true })
     }
 
+    purchaseCancelHandler = () => {
+        this.setState({purchasing: false});
+    }
+
+    purchaseContinueHandler = () => {
+        alert('You continue!');
+    }
+
     render() {
         const disableInfo = {
             ...this.state.ingredients
@@ -92,8 +100,13 @@ class BurgerBuilder extends Component {
         } //prevents the console from throwing an error if the count is below 0
         return (
             <Aux>
-                <Modal show={this.state.purchasing}>
-                    <OrderSummary ingredients={this.state.ingredients} />
+                <Modal 
+                    show={this.state.purchasing}
+                    modalClosed={this.purchaseCancelHandler}>
+                    <OrderSummary 
+                        ingredients={this.state.ingredients}
+                        purchaseCancelled={this.purchaseCancelHandler}
+                        purchaseContinued={this.purchaseContinueHandler} />
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
