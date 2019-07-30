@@ -84,7 +84,7 @@ class BurgerBuilder extends Component {
     }
 
     purchaseCancelHandler = () => {
-        this.setState({purchasing: false});
+        this.setState({ purchasing: false });
     }
 
     purchaseContinueHandler = () => {
@@ -100,10 +100,11 @@ class BurgerBuilder extends Component {
         } //prevents the console from throwing an error if the count is below 0
         return (
             <Aux>
-                <Modal 
+                <Modal
                     show={this.state.purchasing}
                     modalClosed={this.purchaseCancelHandler}>
-                    <OrderSummary 
+                    <OrderSummary
+                        price={this.state.totalPrice}
                         ingredients={this.state.ingredients}
                         purchaseCancelled={this.purchaseCancelHandler}
                         purchaseContinued={this.purchaseContinueHandler} />
