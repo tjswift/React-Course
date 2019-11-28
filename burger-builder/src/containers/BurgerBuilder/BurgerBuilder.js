@@ -35,9 +35,10 @@ class BurgerBuilder extends Component {
             )
             .then(response => {
                 this.setState({ ingredients: response.data });
+                console.log(response.data.meat);
             })
             .catch(error => {
-                this.setState({error: true})
+                this.setState({ error: true });
             });
     }
 
@@ -141,7 +142,11 @@ class BurgerBuilder extends Component {
 
         let orderSummary = null;
 
-        let burger = this.state.error ? <p>Ingredients Can't be loaded</p> : <Spinner />;
+        let burger = this.state.error ? (
+            <p>Ingredients Can't be loaded</p>
+        ) : (
+            <Spinner />
+        );
 
         if (this.state.ingredients) {
             burger = (

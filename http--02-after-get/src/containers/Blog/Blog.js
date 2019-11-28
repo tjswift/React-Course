@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import axios from "../../axios";
-import { Route, Link } from "react-router-dom";
+import { Route, NavLink, Switch } from "react-router-dom";
 
-import Post from "../../components/Post/Post";
-import FullPost from "./FullPost/FullPost";
 import NewPost from "./NewPost/NewPost";
 import "./Blog.css";
 import Posts from "./Posts/Posts";
+import FullPost from "./FullPost/FullPost";
 
 class Blog extends Component {
     render() {
@@ -16,10 +14,20 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li>
-                                <Link to="/">Home</Link>
+                                <NavLink
+                                    to="/"
+                                    exact
+                                    activeClassName="my-active"
+                                    activeStyle={{
+                                        color: "#fa923f",
+                                        textDecoration: "underline"
+                                    }}
+                                >
+                                    Home
+                                </NavLink>
                             </li>
                             <li>
-                                <Link
+                                <NavLink
                                     to={{
                                         pathname: "/newPost",
                                         hash: "#submit",
@@ -27,15 +35,18 @@ class Blog extends Component {
                                     }}
                                 >
                                     New Post
-                                </Link>
+                                </NavLink>
                             </li>
                         </ul>
                     </nav>
                 </header>
                 {/* <Route path="/" exact render={() => <h1>Home</h1>} />
                 <Route path="/" render={() => <h1>Home 2</h1>} /> */}
-                <Route path="/" exact component={Posts} />
-                <Route path="/newPost" component={NewPost} />
+                <Switch>
+                    <Route path="/" exact component={Posts} />
+                    <Route path="/newPost" component={NewPost} />
+                    <Route path="/:id" component={FullPost} />
+                </Switch>
             </div>
         );
     }
