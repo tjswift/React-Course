@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import Courses from './containers/Courses/Courses';
 import Users from './containers/Users/Users';
 import Page404 from '../src/containers/Page404/Page404'
@@ -13,15 +13,15 @@ class App extends Component {
         <div className="App">
             <nav>
               <ul style={{listStyle: 'none', margin: 'auto', padding: '0'}}>
-                <li style={{margin: '10px', display: 'inline-block'}}><Link to="/courses">Courses</Link></li>
-                <li style={{margin: '10px', display: 'inline-block'}}><Link to="/users">Users</Link></li>
+                <li style={{margin: '10px', display: 'inline-block'}}><NavLink to="/courses">Courses</NavLink></li>
+                <li style={{margin: '10px', display: 'inline-block'}}><NavLink to="/users">Users</NavLink></li>
               </ul>
             </nav>
             <Switch>
               {/* <Route path="/" component={Courses}/> */}
               <Route path="/users" component={Users}/>
               <Route path="/courses" component={Courses}/>
-              <Redirect from="/all-courses" to="/courses"/>
+              <Redirect from="/all-courses" exact to="/courses"/>
               <Route component={Page404}/>
             </Switch>
           
